@@ -13,7 +13,11 @@ class Footer extends Component {
             Add
           </button>
           <div className="activity">
-            <button type="button" className="btn btn-light">
+            <button
+              type="button"
+              className="btn btn-light"
+              onClick={this.props.show}
+            >
               All
             </button>
             <button type="button" className="btn btn-light">
