@@ -12,19 +12,24 @@ class App extends Component {
       //   selected: false,
       // },
     ],
+    filterSelected: 'All',
     // ['abc'],
   };
   inputSubmit = (input) => {
     this.setState({
-      inputs: [...this.state.inputs, { name: input, selected: false }],
+      inputs: [
+        ...this.state.inputs,
+        { name: input, selected: false, isEditMode: false },
+      ],
       show: false,
     });
   };
   showCheck = (input, index) => {
     // this.state.inputs[index].selected = input.target.checked;
-
+    console.log(index);
     this.setState({
       inputs: this.state.inputs.map((obj, indexPos) => {
+        // console.log(indexPos)
         return {
           ...obj,
           selected: indexPos === index ? input.target.checked : obj.selected,
@@ -40,8 +45,43 @@ class App extends Component {
     //   show: false,
     // })
   };
+
+  // Edit = (data) => {
+  //   this.setState({
+  //     inputs: this.state.inputs.map((a) => {
+  //       return {
+  //         ...a,
+  //         name: data.isEditMode ? e : data.name,
+  //         isEditMode: false,
+  //       };
+  //     }),
+  //   });
+  // };
+
+  Edit = (ind) => {
+    // console.log(input);
+    this.setState({
+      inputs: this.state.inputs.map((data, index) => {
+        return {
+          ...data,
+
+          isEditMode:
+            index === ind ? (data.isEditMode = true) : data.isEditMode,
+        };
+      }),
+      show: true,
+    });
+  };
+
+  onDelete = (e) => {
+    // let data = [...this.state.inputs];
+    this.setState({
+      inputs: this.state.inputs.filter((listItem,index) => index !== e),
+    });
+  };
+
   render() {
-    console.log(this.state);
+    console.log(this.state.inputs);
     return (
       <div className="container">
         <div className="header container p-5">
@@ -52,8 +92,15 @@ class App extends Component {
           inputs={this.state.inputs}
           inputSubmit={this.inputSubmit}
           showCheck={this.showCheck}
+          filterSelected={this.state.filterSelected}
+          onDelete={this.onDelete}
+          Edit={this.Edit}
         />
-        <Footer show={() => this.setState({ show: true })} />
+        <Footer
+          show={() => this.setState({ show: true })}
+          filterSelected={this.state.filterSelected}
+          onFilterSelect={(filter) => this.setState({ filterSelected: filter })}
+        />
       </div>
     );
   }

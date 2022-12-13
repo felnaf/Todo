@@ -16,14 +16,22 @@ class Footer extends Component {
             <button
               type="button"
               className="btn btn-light"
-              onClick={this.props.show}
+              onClick={() => this.props.onFilterSelect('All')}
             >
               All
             </button>
-            <button type="button" className="btn btn-light">
+            <button
+              type="button"
+              className="btn btn-light"
+              onClick={() => this.props.onFilterSelect('Active')}
+            >
               Active
             </button>
-            <button type="button" className="btn btn-light">
+            <button
+              type="button"
+              className="btn btn-light"
+              onClick={() => this.props.onFilterSelect('completed')}
+            >
               Completed
             </button>
           </div>
