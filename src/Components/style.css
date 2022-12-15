@@ -37,11 +37,18 @@ body {
   justify-content: left;
   width: 45%;
 }
+.display label {
+  margin: 16px 0 0 20px;
+}
 .strike {
   text-decoration: line-through;
 }
 .edit-delete {
-  margin-left: 25px;
+  padding-left: 270px;
+  width: 100%;
+}
+.edit-delete button {
+  margin-top: 20px;
 }
 /* .display-data{
   width: 150px;

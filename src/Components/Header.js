@@ -4,9 +4,17 @@ class Header extends Component {
   state = {
     input: '',
   };
+  componentDidMount() {
+    if (this.props.editElement) {
+      this.setState({ input: this.props.editElement.name });
+    }
+  }
   onFormSubmit = (e) => {
     e.preventDefault();
-    this.props.inputSubmit(this.state.input);
+    this.props.inputSubmit(
+      this.state.input,
+      this.props.editElement ? true : false
+    );
   };
 
   render() {
